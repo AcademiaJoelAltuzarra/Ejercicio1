@@ -27,10 +27,16 @@ public class ProductsController : ControllerBase
 
     [HttpGet("{id}")]
     //get one   http://localhost:7150/api/products/:id
-    public Product Get(int id)
+    public ActionResult<Product> Get(int id)
     {
-        Product product = this.productRepository.FindById(id);
-        return product;
+        Product? product = this.productRepository.FindById(id);
+
+        if (product == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(product);
     }
 
     [HttpPost]
@@ -38,19 +44,22 @@ public class ProductsController : ControllerBase
     public Product Post(Product product)
     {
         // llamar a la BD para crear producto
-        return product;
+        Product newProduct = this.productRepository.Create(product);
+        return newProduct;
     }
 
     [HttpPut]
     //update
     public Product Put(Product product, int id)
     {
-        return product;
+        Product updatedProduct = this.productRepository.Update(product, id);
+        return updatedProduct;
     }
 
     [HttpDelete]
     public int Delete(int id)
     {
-        return id;
+        int idDeleted = this.productRepository.Remove(id);
+        return idDeleted;
     }
 }

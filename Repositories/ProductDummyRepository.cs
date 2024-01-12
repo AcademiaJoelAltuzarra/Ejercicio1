@@ -44,7 +44,7 @@ public class ProductDummyRepository
     return listProducts;
   }
 
-  public Product FindById(int id)
+  public Product? FindById(int id)
   {
     //logica para buscar
     //Product productFind = new Product();
@@ -67,7 +67,7 @@ public class ProductDummyRepository
       }
     }
 
-    return new Product();
+    return null;
     //return productFind;
   }
 
