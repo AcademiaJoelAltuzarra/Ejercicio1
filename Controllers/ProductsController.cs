@@ -41,7 +41,7 @@ public class ProductsController : ControllerBase
 
     [HttpPost]
     //insert
-    public Product Post(Product product)
+    public ActionResult<Product> Post(Product product)
     {
         // llamar a la BD para crear producto
         Product newProduct = this.productRepository.Create(product);
@@ -50,14 +50,14 @@ public class ProductsController : ControllerBase
 
     [HttpPut]
     //update
-    public Product Put(Product product, int id)
+    public ActionResult<Product> Put(Product product, int id)
     {
         Product updatedProduct = this.productRepository.Update(product, id);
         return updatedProduct;
     }
 
     [HttpDelete]
-    public int Delete(int id)
+    public ActionResult<int> Delete(int id)
     {
         int idDeleted = this.productRepository.Remove(id);
         return idDeleted;
